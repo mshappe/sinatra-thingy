@@ -1,0 +1,14 @@
+doctype html
+html lang="en"
+  head
+    title Sinatra Thingy
+    link rel="stylesheet" type="text/css" href='/css/bootstrap.css'
+    script type="text/javascript" src="/javascript/bootstrap.min.js"
+    script type="text/javascript" src="/javascript/jquery-2.0.3.min.js"
+  body
+    .container
+      .navbar
+        .navbar-inner
+          a.brand[href='#']
+            | Sinatra Thingy
+      == yield
