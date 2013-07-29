@@ -5,8 +5,8 @@ Beyond that, it's not very exciting, and it's largely an excuse for me to learn 
 really needs the 200 kilogram gorilla that is Rails. :-)
 
 It's structured as two separate 'apps' under Sinatra -- one for the logging in and setting up of a session, one for the
-search page. I think Sinatra's terminology here is a little strange, calling them different apps, but see Known Issues
-below.
+search page. I think Sinatra's terminology here is a little strange, calling them different apps, but see the first bullet
+under Known Issues below.
 
 You should be able to start the app with:
 
@@ -14,7 +14,7 @@ You should be able to start the app with:
 
 Known Issues:
 
-* Thingy is a lame name. Naming things is hard.
+* Naming things is hard. "Sinatra-Thingy", for example, is kind of a lame name.
 * There's no testing for either the search verb or the javascript. I probably could set something up involving
   replayed data and so on, but it hasn't happened at this point.
 
@@ -31,3 +31,6 @@ Dependencies:
 For testing:
 * RSpec
 * Shoulda
+
+Michael Shappe<br/>
+<mshappe@camelopard-consulting.com>
