@@ -8,9 +8,9 @@ It's structured as two separate 'apps' under Sinatra -- one for the logging in a
 search page. I think Sinatra's terminology here is a little strange, calling them different apps, but see Known Issues
 below.
 
-You should be able to start the app with
+You should be able to start the app with:
 
-bundle exec rackup
+    bundle exec rackup -s thin -p 4567
 
 Known Issues:
 
