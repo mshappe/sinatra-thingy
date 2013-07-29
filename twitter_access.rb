@@ -8,13 +8,18 @@ module TwitterAccess
     request_token
   end
 
-  def get_access_token(verify=false)
-    session[:oauth_verifier] = params[:oauth_verifier] if params[:oauth_verifier]
+  def get_initial_access_token(verify=false)
     request_token = OAuth::RequestToken.new oauth, session[:token], session[:secret]
-    access_token  = request_token.get_access_token oauth_verifier: session[:oauth_verifier]
+    access_token  = request_token.get_access_token oauth_verifier: params[:oauth_verifier]
     oauth.request :get, '/1.1/account/verify_credentials.json', access_token, scheme: :query_string if verify
 
+    session[:token] = access_token.token
+    session[:secret] = access_token.secret
     access_token
+  end
+
+  def get_access_token
+    @access ||= OAuth::AccessToken.new oauth, session[:token], session[:secret]
   end
 
   def oauth

@@ -15,24 +15,29 @@ form.form-horizontal#search-form[method="post" action="#"]
 #results
 
 javascript:
-  $('#geo').change(function() {
-    if ($('#geo').is(':checked')) {
-      var nav_success = function(pos) { window.loc = pos };
-      navigator.geolocation.getCurrentPosition(nav_success);
-    } else {
-      window.loc = null;
-    }
+  $(function() {
+    var options = { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+    function nav_success(pos) { window.loc = pos };
+    function nav_failure(err) { $('#results').html("<p>Unable to get location: " + err + " </p>") };
+    navigator.geolocation.getCurrentPosition(nav_success, nav_failure, options);
   });
+
+  function get_geo() {
+    if ($('#geo').is(':checked')) {
+      return window.loc;
+    } else {
+      return null;
+    }
+  };
 
   $('#search-form').submit(function() {
     $('#results').html('Please wait...');
     var data = $('input[name=twitter-search]').val();
-
     var request = $.ajax({
       url: '/search.json',
       data: {
         q: data,
-        location: window.loc
+        location: get_geo()
       },
       type: 'POST',
       dataType: 'html'

@@ -8,9 +8,15 @@ It's structured as two separate 'apps' under Sinatra -- one for the logging in a
 search page. I think Sinatra's terminology here is a little strange, calling them different apps, but see Known Issues
 below.
 
+You should be able to start the app with
+
+bundle exec rackup
+
 Known Issues:
 
 * Thingy is a lame name. Naming things is hard.
+* There's no testing for either the search verb or the javascript. I probably could set something up involving
+  replayed data and so on, but it hasn't happened at this point.
 
 Dependencies:
 
@@ -19,8 +25,8 @@ Dependencies:
 * Sinatra 1.4.3
 * Sinatra Contrib GEM 1.4.0 (for JSON magic)
 * Slim 2.0 (a templating language similar to but even cleaner than HAML)
-* YAJL (also for JSON magic)
 * OAuth 0.4.7 (for Twitter authorization)
+* Yajl as the JSON parser of choice
 
 For testing:
 * RSpec

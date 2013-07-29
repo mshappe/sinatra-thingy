@@ -1,8 +1,7 @@
 require 'fakeweb'
-require 'rspec'
 require 'rack/test'
+require 'rspec'
 require 'sinatra'
-require 'yajl'
 
 set :environment, :test
 set :run, false

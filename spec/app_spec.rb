@@ -23,7 +23,7 @@ describe "Sinatra Thingy" do
 
     it 'should return OK and a body' do
       last_response.should be_ok
-      last_response.should match /<form>/
+      last_response.should match /<form/
     end
   end
 

@@ -1,5 +1,7 @@
-- if @result.nil? || @result['statuses'].nil? || @result['statuses'].count == 0
-  p No result
+- if @result && @result['errors']
+  .alert-error Unable to query Twitter: #{@result['errors'][0]['message']}
+- elsif @result.nil? || @result['statuses'].nil? || @result['statuses'].count == 0
+  .alert-info No result
 - else
   - @result['statuses'].each do |status|
     .tweet

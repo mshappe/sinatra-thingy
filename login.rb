@@ -18,7 +18,7 @@ class Login < Sinatra::Base
 
   get '/login/complete' do
     begin
-      session[:auth_token] = get_access_token # will throw exceptions on failure
+      session[:auth_token] = get_initial_access_token # will throw exceptions on failure
       session[:notice] = 'Successfully logged in via Twitter'
       session[:error] = nil
 
