@@ -20,6 +20,7 @@ Dependencies:
 * Sinatra Contrib GEM 1.4.0 (for JSON magic)
 * Slim 2.0 (a templating language similar to but even cleaner than HAML)
 * YAJL (also for JSON magic)
+* OAuth 0.4.7 (for Twitter authorization)
 
 For testing:
 * RSpec

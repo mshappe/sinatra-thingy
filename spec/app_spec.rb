@@ -6,15 +6,26 @@ describe "Sinatra Thingy" do
     Thingy
   end
 
-  describe 'GET /' do
+  describe 'GET / with no session' do
     before do
       get '/'
     end
 
-    it 'should return OK and an expected body' do
-      last_response.should be_ok
-      last_response.should
+    it 'should return Redirect' do
+      last_response.should be_redirect
+    end
+  end
+
+  describe 'GET / with session' do
+    before do
+      get '/', {}, { 'rack.session' => { 'auth_token' => 'Foo' }}
     end
 
+    it 'should return OK and a body' do
+      last_response.should be_ok
+      last_response.should match /<form>/
+    end
   end
+
+
 end

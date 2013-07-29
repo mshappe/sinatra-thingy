@@ -1,0 +1,11 @@
+- if @result.nil?
+  p No result
+- else
+  - @result['statuses'].each do |status|
+    .tweet
+      .user
+        span.screen-name= "@" + status['user']['screen_name']
+        span.name
+          | &nbsp;(#{status['user']['name']})
+      .status-text
+        = status['text']

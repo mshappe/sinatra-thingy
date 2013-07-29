@@ -1,0 +1,17 @@
+.tweet {
+    border: thin solid black;
+    margin: 6px;
+    padding: 6px;
+    width: 50%;
+}
+
+.tweet .user
+{
+    font-size: larger;
+    margin-bottom: 6px;
+}
+
+.tweet .user .screen-name
+{
+    font-weight: bold;
+}

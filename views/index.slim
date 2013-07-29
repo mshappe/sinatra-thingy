@@ -1,0 +1,35 @@
+form.form-horizontal#search-form[method="post" action="#"]
+  fieldset
+    .control-group
+      label.control-label[for="search"] Search Your Twitter Stream
+      .controls
+        input[name="twitter-search" id="search" type="text" class="input-xxlarge"]
+    .control-group
+      .controls
+        button.btn[type="submit"] Submit
+
+#results
+
+javascript:
+  $(function() {
+    var nav_success = function(pos) { window.loc = pos };
+    navigator.geolocation.getCurrentPosition(nav_success);
+  });
+
+  $('#search-form').submit(function() {
+    var data = $('input[name=twitter-search]').val();
+
+    var request = $.ajax({
+      url: '/search.json',
+      data: {
+        q: data,
+        location: window.loc
+      },
+      type: 'POST',
+      dataType: 'html'
+    });
+    request.done(function(result) {
+      $('#results').html(result);
+    });
+    return false;
+  });
