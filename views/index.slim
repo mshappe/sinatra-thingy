@@ -5,18 +5,27 @@ form.form-horizontal#search-form[method="post" action="#"]
       .controls
         input[name="twitter-search" id="search" type="text" class="input-xxlarge"]
     .control-group
+      label.control-label[for="geo"] Restrict to within 50mi of your current location?
+      .controls
+        input[name="geo" id="geo" type="checkbox" value="0" ]
+    .control-group
       .controls
         button.btn[type="submit"] Submit
 
 #results
 
 javascript:
-  $(function() {
-    var nav_success = function(pos) { window.loc = pos };
-    navigator.geolocation.getCurrentPosition(nav_success);
+  $('#geo').change(function() {
+    if ($('#geo').is(':checked')) {
+      var nav_success = function(pos) { window.loc = pos };
+      navigator.geolocation.getCurrentPosition(nav_success);
+    } else {
+      window.loc = null;
+    }
   });
 
   $('#search-form').submit(function() {
+    $('#results').html('Please wait...');
     var data = $('input[name=twitter-search]').val();
 
     var request = $.ajax({

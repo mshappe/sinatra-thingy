@@ -1,4 +1,4 @@
-- if @result.nil?
+- if @result.nil? || @result['statuses'].nil? || @result['statuses'].count == 0
   p No result
 - else
   - @result['statuses'].each do |status|
