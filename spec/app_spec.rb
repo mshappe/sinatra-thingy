@@ -18,7 +18,7 @@ describe "Sinatra Thingy" do
 
   describe 'GET / with session' do
     before do
-      get '/', {}, { 'rack.session' => { 'auth_token' => 'Foo' }}
+      get '/', {}, { 'rack.session' => { 'access_token' => 'Foo' }}
     end
 
     it 'should return OK and a body' do

@@ -13,12 +13,12 @@ class Login < Sinatra::Base
   end
 
   get '/login/twitter' do
-    redirect get_initial_request_token.authorize_url
+    redirect initial_request_token.authorize_url
   end
 
   get '/login/complete' do
     begin
-      session[:auth_token] = get_initial_access_token # will throw exceptions on failure
+      initial_access_token # will throw exceptions on failure
       session[:notice] = 'Successfully logged in via Twitter'
       session[:error] = nil
 

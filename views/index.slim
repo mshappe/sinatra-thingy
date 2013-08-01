@@ -34,7 +34,7 @@ javascript:
     $('#results').html('Please wait...');
     var data = $('input[name=twitter-search]').val();
     var request = $.ajax({
-      url: '/search.json',
+      url: '/search',
       data: {
         q: data,
         location: get_geo()
