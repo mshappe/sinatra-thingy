@@ -16,17 +16,27 @@ class Thingy < Sinatra::Base
   end
 
   post '/search' do
-    query_string = "/1.1/search/tweets.json?q=#{CGI::escape params[:q]}&count=100"
-    query_string += "&geocode=#{params[:location][:coords][:latitude]},#{params[:location][:coords][:longitude]},50mi" if params[:location] && params[:location].is_a?(Hash)
-
     begin
       response = access_token.get query_string
       @result = Yajl::Parser.parse response.body unless response.body == []
       slim :search_partial, layout: false
     rescue => e
-      puts e
       @error = e.to_s
       slim :search_error, layout: false
     end
+  end
+
+  protected
+
+  def geocode_params
+    "&geocode=#{params[:location][:coords][:latitude]},#{params[:location][:coords][:longitude]},50mi" if location_present?
+  end
+  
+  def location_present?
+    params[:location] && params[:location].is_a?(Hash)
+  end
+
+  def query_string
+    "/1.1/search/tweets.json?q=#{CGI::escape params[:q]}&count=100#{geocode_params}"
   end
 end

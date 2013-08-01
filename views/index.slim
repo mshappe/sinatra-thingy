@@ -8,6 +8,7 @@ form.form-horizontal#search-form[method="post" action="#"]
       label.control-label[for="geo"] Restrict to within 50mi of your current location?
       .controls
         input[name="geo" id="geo" type="checkbox" value="0" ]
+	span#nav-error.alert-error
     .control-group
       .controls
         button.btn[type="submit"] Submit
@@ -18,7 +19,7 @@ javascript:
   $(function() {
     var options = { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
     function nav_success(pos) { window.loc = pos };
-    function nav_failure(err) { $('#results').html("<p>Unable to get location: " + err + " </p>") };
+    function nav_failure(err) { $('#nav-error').html("Unable to get location: " + err) };
     navigator.geolocation.getCurrentPosition(nav_success, nav_failure, options);
   });
 
