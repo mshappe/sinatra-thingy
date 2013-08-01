@@ -23,7 +23,6 @@ Dependencies:
 * Ruby 2.0.0-p195 or greater
 * Bundler
 * Sinatra 1.4.3
-* Sinatra Contrib GEM 1.4.0 (for JSON magic)
 * Slim 2.0 (a templating language similar to but even cleaner than HAML)
 * OAuth 0.4.7 (for Twitter authorization)
 * Yajl as the JSON parser of choice

@@ -1,11 +1,9 @@
 require 'sinatra/base'
-require 'sinatra/json'
 require 'yajl'
 require './login'
 
 
 class Thingy < Sinatra::Base
-  helpers Sinatra::JSON
   include TwitterAccess
   use Login
 

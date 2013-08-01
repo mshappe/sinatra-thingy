@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 gem 'oauth', '~> 0.4'
 gem 'sinatra', '~> 1.4'
-gem 'sinatra-contrib', '~> 1.4'
 gem 'slim', '~> 2.0'
 gem 'thin'
 gem 'yajl-ruby', '~> 1.1', require: 'yajl'
