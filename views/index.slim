@@ -16,24 +16,19 @@ form.form-horizontal#search-form[method="post" action="#"]
 #results
 
 javascript:
-  $(function() {
-    var options = { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
-    function nav_success(pos) { window.loc = pos };
-    function nav_failure(err) { $('#nav-error').html("Unable to get location: " + err) };
-    navigator.geolocation.getCurrentPosition(nav_success, nav_failure, options);
-  });
 
+  var loc = null;
   function get_geo() {
     if ($('#geo').is(':checked')) {
-      return window.loc;
+      return { longitude: loc.coords.longitude, latitude: loc.coords.latitude }
     } else {
       return null;
     }
   };
 
-  $('#search-form').submit(function() {
+  function do_search(data) {
     $('#results').html('Please wait...');
-    var data = $('input[name=twitter-search]').val();
+    $('input[name=twitter-search]').val(data);
     var request = $.ajax({
       url: '/search',
       data: {
@@ -46,5 +41,34 @@ javascript:
     request.done(function(result) {
       $('#results').html(result);
     });
+  };
+
+  $(function() {
+    var options = { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+    function nav_success(pos) { loc = pos };
+    function nav_failure(err) { $('#nav-error').html("Unable to get location: " + err) };
+    navigator.geolocation.getCurrentPosition(nav_success, nav_failure, options);
+
+    $(window).bind('hashchange', function(e) {
+      var data = window.location.hash.replace('#','');;
+      if (data.length) {
+        if (data.match(/-geo$/)) {
+          $('#geo').prop('checked', true);
+          data = data.replace(/-geo$/, '');
+        } else {
+          $('#geo').prop('checked', false);
+        };
+        do_search(data);
+      }
+    });
+  });
+
+  $('#search-form').submit(function() {
+    var data = $('input[name=twitter-search]').val();
+    window.location.hash = data;
+    if ($('#geo').is(':checked')) {
+      window.location.hash += '-geo';
+    }
+    do_search(data);
     return false;
   });

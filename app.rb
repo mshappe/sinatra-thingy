@@ -29,7 +29,7 @@ class Thingy < Sinatra::Base
   protected
 
   def geocode_params
-    "&geocode=#{params[:location][:coords][:latitude]},#{params[:location][:coords][:longitude]},50mi" if location_present?
+    "&geocode=#{params[:location][:latitude]},#{params[:location][:longitude]},50mi" if location_present?
   end
   
   def location_present?
